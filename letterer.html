@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>DOM text marker</title>
+	<meta charset="UTF-8" />
+	<link href="bootstrap.css" rel="stylesheet">
+	<style type="text/css">
+		body{ font:20px/1.3 arial; }
+		
+		#mainText{ width:50%; xmin-width:500px; margin:50px auto; }
+		
+		word{ display:inline-block; }
+		
+		a mark{ color:inherit; }
+		mark{ display:inline-block; white-space:pre; background:none; transition:.8s; }
+		mark.initial{ text-shadow:0 0 25px #999; color:transparent; }
+			
+		.credit{ position:absolute; bottom:10px; left:10px; padding:10px 20px; color:#777; font-size:0.85em; text-align:center; background:#EEE; border-radius:10px;  }
+	</style>
+</head>
+	<body>
+		<div id='mainText'>
+			<h1>Client-side scripting: <i>javascript</i></h1>
+			<p><b>Client-side scripting</b> generally refers to the class of <a title="Computer program" href="/wiki/Computer_program">computer programs</a> on the <a title="World Wide Web" href="/wiki/World_Wide_Web">web</a> that are <a class="mw-redirect" title="Execution (computers)" href="/wiki/Execution_(computers)">executed</a> <i><a title="Client-side" href="/wiki/Client-side">client-side</a></i>, by the user's <a title="Web browser" href="/wiki/Web_browser">web browser</a>, instead of <i><a title="Server-side" href="/wiki/Server-side">server-side</a></i> (on the <a title="Web server" href="/wiki/Web_server">web server</a>). This type of <a title="Computer programming" href="/wiki/Computer_programming">computer programming</a> is an important part of the <a title="Dynamic HTML" href="/wiki/Dynamic_HTML">Dynamic HTML</a> (DHTML) concept, enabling <a title="Web page" href="/wiki/Web_page">web pages</a> to be <a class="mw-redirect" title="Script (computer programming)" href="/wiki/Script_(computer_programming)">scripted</a>; that is, to have different and changing content depending on user input, environmental conditions (such as the time of day), or other variables.</p>
+		</div>
+		<footer class='credit'>
+			<span>A demo by <em>Yair Even Or</em></span><br />
+			<a href='http://dropthebit.com' title='cool client-side stuff'>dropthebit.com</a>
+		</footer>
+		<script src="letterer.js"></script>
+		<script>
+			var breaktoLetters = document.getElementById('mainText'),
+				letters, 
+				delay = 0,
+				delayJump = 30,
+				totalLetters;
+				
+			letterate( breaktoLetters );
+			
+			letters = breaktoLetters.getElementsByTagName('mark');
+			totalLetters = letters.length;
+			
+			for( var i=0; i < totalLetters; i++ ){
+				doTimer(letters[i], delay);
+				delay += delayJump;
+				// if the letter is a "comma" then pause for a little more, to have some delay between sentences 
+				if( letters[i].innerHTML == ',' )
+					delay += delayJump * 6;
+			}
+			
+			function doTimer(letter, delay){
+				setTimeout(function(){ 
+					letter.removeAttribute('class');
+				}, delay);
+			}
+		</script>
+	</body>
+</html>
