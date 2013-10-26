@@ -1,19 +1,18 @@
 function letterer(element){
-	var letter, letterElm, parent, len, wordElm,
+	var letter, letterElm, parent, len, wordElm, letters, nodeValue, 
 		supportsTrim = String.prototype.trim;
 		
 	// look for the term in the cleanest fastest way (that I could come up with)
 	(function recursiveSearch(element){
 		// if its a text-node, and its not empty 
 		if( element.nodeType == 3 ){  // trim() can be removed (not supported in IE)
-			len = supportsTrim ? element.nodeValue.trim().length : element.nodeValue.length;
-
-			if( len ){	
+			if( supportsTrim ? element.nodeValue.trim() : element.nodeValue ){
+				letters = element.nodeValue.split('').reverse();
 				wordElm = document.createElement('word');
+				element.nodeValue = '';
 				// do this for every letter in this text-node
-				while( len-- >= 0 ){
+				while( letter = letters.pop() ){
 					parent = element.parentNode;
-					letter = element.nodeValue.substr(0, 1);
 					
 					letterElm = document.createElement('letter');
 					letterElm.className = 'initial'; // add a class for transition purposes 
@@ -26,10 +25,7 @@ function letterer(element){
 						parent.insertBefore( letterElm, element );
 					}
 					else
-						wordElm.appendChild(letterElm);
-					
-					// after the letter was removed, replace the value with the rest of the text
-					element.nodeValue = element.nodeValue.substr(1);
+						wordElm.insertBefore(letterElm, null);
 				}
 				parent.insertBefore( wordElm, element );
 			}
