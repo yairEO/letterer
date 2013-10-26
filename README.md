@@ -40,7 +40,7 @@ After things have been broken down, you can pretty much just go over all the let
 	for( i=0; i < totalLetters; i++ ){
 		doTimer(letters[i], delay);
 		delay += delayJump;
-		// if the letter is a "comma" then pause for a little more, to have some delay between sentences 
+		// if the letter is a "comma" then do a little pause, for some delay.
 		if( letters[i].innerHTML == ',' )
 			delay += delayJump * 6;
 	}
