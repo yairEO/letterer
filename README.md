@@ -2,8 +2,6 @@ LETTERER
 =============
 Breaks a DOM node into separate letters and separate words.
 
-###[View Demo Page](http://dropthebit.com/demos/fancy_input/fancyInput.html)
-
 ## Basic use example:
 ```html
 <!-- ...previous page content... -->
