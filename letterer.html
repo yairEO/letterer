@@ -11,9 +11,9 @@
 		
 		word{ display:inline-block; }
 		
-		a mark{ color:inherit; }
-		mark{ display:inline-block; white-space:pre; background:none; transition:.8s; }
-		mark.initial{ text-shadow:0 0 25px #999; color:transparent; }
+		a letter{ color:inherit; }
+		letter{ display:inline-block; white-space:pre; background:none; transition:.8s; }
+		letter.initial{ text-shadow:0 0 25px #999; color:transparent; }
 			
 		.credit{ position:absolute; bottom:10px; left:10px; padding:10px 20px; color:#777; font-size:0.85em; text-align:center; background:#EEE; border-radius:10px;  }
 	</style>
@@ -29,15 +29,16 @@
 		</footer>
 		<script src="letterer.js"></script>
 		<script>
-			var breaktoLetters = document.getElementById('mainText'),
+			var lettersContainer = document.getElementById('mainText'),
 				letters, 
 				delay = 0,
 				delayJump = 30,
 				totalLetters;
-				
-			letterate( breaktoLetters );
 			
-			letters = breaktoLetters.getElementsByTagName('mark');
+			// Break to letters
+			letterer( lettersContainer );
+			// get all "letter" elements
+			letters = lettersContainer.getElementsByTagName('letter');
 			totalLetters = letters.length;
 			
 			for( var i=0; i < totalLetters; i++ ){

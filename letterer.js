@@ -1,4 +1,4 @@
-function letterate(element, transitionClass){
+function letterer(element){
 	var letter, letterElm, parent, len, wordElm,
 		supportsTrim = String.prototype.trim;
 		
@@ -15,7 +15,7 @@ function letterate(element, transitionClass){
 					parent = element.parentNode;
 					letter = element.nodeValue.substr(0, 1);
 					
-					letterElm = document.createElement('mark');
+					letterElm = document.createElement('letter');
 					letterElm.className = 'initial'; // add a class for transition purposes 
 					letterElm.innerHTML = letter;
 					
