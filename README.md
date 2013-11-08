@@ -1,6 +1,10 @@
 LETTERER
 =============
-Breaks a DOM node into separate letters and separate words.
+Breaks HTML into individual characters, and words, without messing up the semantic structure
+
+**1.3 KB** - uncompressed
+
+# [Demo page](http://codepen.io/vsync/pen/fkmrc)
 
 ## Basic use example:
 ```html
