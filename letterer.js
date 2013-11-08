@@ -6,7 +6,7 @@ function letterer(element){
 		
 	walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
 
-	while(node = walker.nextNode()) {
+	while( node = walker.nextNode() ){
 	   if( node.nodeType == 3 ){  // trim() can be removed (not supported in IE)
 			if( supportsTrim ? node.nodeValue.trim() : node.nodeValue ){
 				letters = node.nodeValue.split('').reverse();
