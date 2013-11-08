@@ -1,18 +1,20 @@
 function letterer(element){
-	var letter, letterElm, parent, wordElm, letters, 
+	if( !document.createTreeWalker ) return false;
+	
+	var letter, letterElm, parent, wordElm, letters, walker, node, 
 		supportsTrim = String.prototype.trim;
 		
-	// look for the term in the cleanest fastest way (that I could come up with)
-	(function recursiveSearch(element){
-		// if its a text-node, and its not empty 
-		if( element.nodeType == 3 ){  // trim() can be removed (not supported in IE)
-			if( supportsTrim ? element.nodeValue.trim() : element.nodeValue ){
-				letters = element.nodeValue.split('').reverse();
+	walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+
+	while(node = walker.nextNode()) {
+	   if( node.nodeType == 3 ){  // trim() can be removed (not supported in IE)
+			if( supportsTrim ? node.nodeValue.trim() : node.nodeValue ){
+				letters = node.nodeValue.split('').reverse();
 				wordElm = document.createElement('word');
-				element.nodeValue = '';
+				node.nodeValue = '';
 				// do this for every letter in this text-node
 				while( letter = letters.pop() ){
-					parent = element.parentNode;
+					parent = node.parentNode;
 					
 					letterElm = document.createElement('letter');
 					letterElm.className = 'initial'; // add a class for transition purposes 
@@ -20,18 +22,15 @@ function letterer(element){
 					
 					// check for a space
 					if( letter == ' ' ){
-						parent.insertBefore( wordElm, element );
+						parent.insertBefore( wordElm, node );
 						wordElm = document.createElement('word');
-						parent.insertBefore( letterElm, element );
+						parent.insertBefore( letterElm, node );
 					}
 					else
 						wordElm.insertBefore(letterElm, null);
 				}
-				parent.insertBefore( wordElm, element );
+				parent.insertBefore( wordElm, node );
 			}
 		}
-		else
-			for( var j=element.childNodes.length; j--; )
-				recursiveSearch(element.childNodes[j]);
-	})(element);
+	}
 }

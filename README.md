@@ -1,6 +1,6 @@
 LETTERER
 =============
-Breaks HTML into individual characters, and words, without messing up the semantic structure
+Breaks HTML into individual characters, and words, without messing up the semantic structure.
 
 **1.3 KB** - uncompressed
 
