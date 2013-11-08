@@ -1,5 +1,5 @@
 function letterer(element){
-	var letter, letterElm, parent, len, wordElm, letters, nodeValue, 
+	var letter, letterElm, parent, wordElm, letters, 
 		supportsTrim = String.prototype.trim;
 		
 	// look for the term in the cleanest fastest way (that I could come up with)
@@ -34,4 +34,4 @@ function letterer(element){
 			for( var j=element.childNodes.length; j--; )
 				recursiveSearch(element.childNodes[j]);
 	})(element);
-};
+}
