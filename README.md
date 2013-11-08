@@ -1,4 +1,4 @@
-LETTERER
+letterer
 =============
 Breaks HTML into individual characters, and words, without messing up the semantic structure.
 
