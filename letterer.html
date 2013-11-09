@@ -31,7 +31,7 @@
 		<script>
 			var lettersContainer = document.getElementById('mainText'),
 				letters, 
-				delay = 0,
+				delay = 200,
 				delayJump = 33,
 				totalLetters;
 			
@@ -39,7 +39,6 @@
 			letterer( lettersContainer );
 			// get all "letter" elements
 			
-	
 			letters = lettersContainer.getElementsByTagName('letter');
 			totalLetters = letters.length;
 			
@@ -56,7 +55,6 @@
 					letter.removeAttribute('class');
 				}, delay);
 			}
-
 		</script>
 	</body>
 </html>

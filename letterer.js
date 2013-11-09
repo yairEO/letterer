@@ -7,15 +7,14 @@ function letterer(element){
 	walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
 
 	while( node = walker.nextNode() ){
-	   if( node.nodeType == 3 ){  // trim() can be removed (not supported in IE)
+	   if( node.nodeType == 3 ){
 			if( supportsTrim ? node.nodeValue.trim() : node.nodeValue ){
 				letters = node.nodeValue.split('').reverse();
 				wordElm = document.createElement('word');
 				node.nodeValue = '';
+				parent = node.parentNode;		
 				// do this for every letter in this text-node
 				while( letter = letters.pop() ){
-					parent = node.parentNode;
-					
 					letterElm = document.createElement('letter');
 					letterElm.className = 'initial'; // add a class for transition purposes 
 					letterElm.innerHTML = letter;
@@ -27,7 +26,7 @@ function letterer(element){
 						parent.insertBefore( letterElm, node );
 					}
 					else
-						wordElm.insertBefore(letterElm, null);
+						wordElm.appendChild(letterElm);
 				}
 				parent.insertBefore( wordElm, node );
 			}
