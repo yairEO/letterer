@@ -26,29 +26,31 @@ Breaks HTML into individual characters, and words, without messing up the semant
 </div>
 ```
 
-The script recursively runs over the initial DOM node's children and breaks everything down. It's pretty lightweight and does not require any 3rd party library.
-Note that a class is added to each letter in the break down process, so later it could be removed so cool CSS3 transition effects could be done. (much better to remove a class then to add one).
+The script recursively runs over the initial DOM node's children. It's pretty lightweight and does not require any 3rd party library.
+Note that a class is added to each letter in the break down process, for CSS transition effects purposes. (I believe it's better to remove a class then to add one for an initial transition effect).
 
 After things have been broken down, you can pretty much just go over all the letters with a timer and a loop and remove their added class, like so:
 
-	var letters, i, totalLetters
-		delay = 0,
-		delayJump = 30;
+```js
+var letters, i, totalLetters
+	delay = 0,
+	delayJump = 30;
 
-	// get all "letter" elements
-	letters = lettersContainer.getElementsByTagName('letter');
-	totalLetters = letters.length;
+// get all "letter" elements
+letters = lettersContainer.getElementsByTagName('letter');
+totalLetters = letters.length;
 
-	for( i=0; i < totalLetters; i++ ){
-		doTimer(letters[i], delay);
-		delay += delayJump;
-		// if the letter is a "comma" then do a little pause, for some delay.
-		if( letters[i].innerHTML == ',' )
-			delay += delayJump * 6;
-	}
+for( i=0; i < totalLetters; i++ ){
+	doTimer(letters[i], delay);
+	delay += delayJump;
+	// if the letter is a "comma" then do a little pause, for some delay.
+	if( letters[i].innerHTML == ',' )
+		delay += delayJump * 6;
+}
 
-	function doTimer(letter, delay){
-		setTimeout(function(){ 
-			letter.removeAttribute('class');
-		}, delay);
-	}
+function doTimer(letter, delay){
+	setTimeout(function(){ 
+		letter.removeAttribute('class');
+	}, delay);
+}
+```
